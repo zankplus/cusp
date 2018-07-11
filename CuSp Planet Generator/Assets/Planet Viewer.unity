@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007026057, g: 0.0604562, b: 0.15439713, a: 1}
+  m_IndirectSpecularColor: {r: 0.008457976, g: 0.06028966, b: 0.15419245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -285,11 +285,11 @@ MonoBehaviour:
   prefab: {fileID: 4819300603443264, guid: 660602623ef66bb4cb5eceb7c3a8734f, type: 2}
   rotationPoint: {fileID: 1281164995}
   noiseSelector: {fileID: 1682564315}
+  seedField: {fileID: 1311172708}
+  rotationSpeedSlider: {fileID: 481732554}
+  togglePoles: {fileID: 1138074384}
   xRotationSlider: {fileID: 267028121}
   yRotationSlider: {fileID: 623864424}
-  rotationSpeedSlider: {fileID: 481732554}
-  seedField: {fileID: 1311172708}
-  togglePoles: {fileID: 1138074384}
 --- !u!4 &201451365
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,10 +1191,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Text: {fileID: 1175418157}
-  m_Image: {fileID: 0}
-  m_RectTransform: {fileID: 660676084}
-  m_Toggle: {fileID: 660676086}
 --- !u!114 &660676086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2763,11 +2759,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 92ab1896b7c9ca64cb72cddc5a0fbb2f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

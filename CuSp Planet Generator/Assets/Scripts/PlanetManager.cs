@@ -106,5 +106,6 @@ public class PlanetManager : MonoBehaviour
         currentAngle.z = 0;
 
         rotationPoint.transform.rotation = Quaternion.Euler(currentAngle);
+
     }
 }

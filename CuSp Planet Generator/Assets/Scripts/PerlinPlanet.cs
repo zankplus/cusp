@@ -69,7 +69,7 @@ public class PerlinPlanet : MonoBehaviour
     [Range(1, 8)]   public int octaves = 5;             // Number of successive wavelengths to add together
     [Range(1f, 4f)] public float lacunarity = 2f;       // Factor by which frequency scales with each successive octave
     [Range(0f, 1f)] public float persistence = 0.5f;    // Factor by which amplitude scales with each successive octave
-    private float frequency;                            // Frequency of noise. Lower frequency means higher wavenlength and thus larger landforms
+    public float frequency;                            // Frequency of noise. Lower frequency means higher wavenlength and thus larger landforms
     private float xOffset, yOffset, zOffset;            // Virtual position of the planet in 3D space, as Perlin noise is determined by planet's initial 'position'
 
     /**
@@ -200,9 +200,7 @@ public class PerlinPlanet : MonoBehaviour
 
         // Resize texture if necessary
         if (texture.width != textureResolution)
-        {
             texture.Resize(textureResolution, textureResolution);
-        }
 
         NoiseMethod method = Noise.noiseMethods[(int)noiseType][2];  // Always use 3D noise
 
@@ -233,6 +231,7 @@ public class PerlinPlanet : MonoBehaviour
 
                 // Apply the offsets to virtually translate the cube-sphere and obtain a unique sphere of noise
                 point = new Vector3(point.x + xOffset, point.y + yOffset, point.z + zOffset);
+                Vector3 point2 = new Vector3(point.x + yOffset, point.y + zOffset, point.z + xOffset);
 
                 // Obtain a sample from the Noise function for this point
                 if (noiseType == NoiseMethodType.Value)
@@ -248,13 +247,18 @@ public class PerlinPlanet : MonoBehaviour
                     persistence = 0.25f;
                 }
 
-                    float sample = Noise.Sum(method, point, frequency, octaves, lacunarity, persistence);
+                float sample = Noise.Sum(method, point, frequency, octaves, lacunarity, persistence);
+                float sample2 = Noise.Sum(method, point2, frequency, octaves, lacunarity, persistence);
+
 
                 // Perlin noise must be shifted into the 0-1 range
                 if (noiseType == NoiseMethodType.Perlin)
                 {
                     sample = sample * 0.5f + 0.5f;
+                    sample2 = sample2 * 0.5f + 0.5f;
                 }
+
+                // sample = (sample + sample2 * sample2) * 0.5f;
 
                 // Color the pixel according to the Perlin 
                 texture.SetPixel(x, y, coloring.Evaluate(sample));
